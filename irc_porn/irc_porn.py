@@ -1,3 +1,4 @@
+# coding=utf-8
 #!/usr/bin/env python3
 # Copyright (c) 2016, Cyril Roelandt
 # Reupload by Peter Stanke (MAGIC), https://git.kthx.at/MAGIC/PornServ
