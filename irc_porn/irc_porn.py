@@ -1,4 +1,3 @@
-# coding=utf-8
 #!/usr/bin/env python3
 # Copyright (c) 2016, Cyril Roelandt
 # Reupload by Peter Stanke (MAGIC), https://git.kthx.at/MAGIC/PornServ
@@ -47,10 +46,9 @@ CHANNEL = None
 NICK = None
 browsers = []
 
-
 class RedditBrowser(object):
     def __init__(self, subreddits):
-        self.reddit = praw.Reddit(user_agent='irc-porn')
+        self.reddit = praw.Reddit(user_agent='irc-porn', client_id="PHpvOgtt93g1xg", client_secret="ZRr1eTQApsX3OWyo0irnE5XmKpU")
         self.dump_file = '/tmp/irc-porn-reddit.dump'
         self.subs = {sub_name: None for sub_name in subreddits}
         try:
@@ -179,6 +177,10 @@ def parse_args():
                         help='Channel to join')
     parser.add_argument('--nick', required=True,
                         help='Nick used by the IRC bot')
+    parser.add_argument('--username', required=False, default="username", 
+                        help='Username used by the IRC bot')
+    parser.add_argument('--realname', required=False, default="realname", 
+                        help='Realname used by the IRC bot')
     parser.add_argument('--reddit', required=True,
                         help='Comma-separated list of subreddits to parse')
     return parser.parse_args()
@@ -186,12 +188,16 @@ def parse_args():
 
 def main():
     args = parse_args()
-    global browsers, CHANNEL, NICK
+    global browsers, CHANNEL, NICK, USERNAME, REALNAME
     CHANNEL = args.channel
     NICK = args.nick
+    USERNAME= args.username
+    REALNAME= args.realname
     subreddits = args.reddit.split(',')
     browsers.append(RedditBrowser(subreddits))
-
+    
+    print("loading IrcBot")
+	
     irc3.IrcBot(
         nick=NICK,
         autojoins=[CHANNEL],
@@ -200,8 +206,14 @@ def main():
         ssl=True,
         ssl_verify='CERT_NONE',
         verbose=True,
+        username=USERNAME,
+        realname=REALNAME,
+        autocommands=[
+		    'PRIVMSG NickServ :IDENTIFY password',
+		],
         includes=[
             'irc3.plugins.userlist',
+            'irc3.plugins.autocommand',
             __name__,
         ]).run()
 
