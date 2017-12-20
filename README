@@ -8,5 +8,5 @@ $ irc-porn \
 	--channel "#mychannel" \
 	--reddit NSFW_GIF,anal \
 	--nick SomeNickForTheBot \
-	--username username
+	--username username \
 	--realname realname
