@@ -7,4 +7,6 @@ $ irc-porn \
 	--port 6697 \
 	--channel "#mychannel" \
 	--reddit NSFW_GIF,anal \
-	--nick SomeNickForTheBot
+	--nick SomeNickForTheBot \
+	--username username
+	--realname realname
