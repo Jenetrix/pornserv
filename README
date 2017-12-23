@@ -14,4 +14,4 @@ $ irc-porn
 Requires:
     aiocron
     irc3
-    Praw
+    Praw 3.4.0
