@@ -53,7 +53,7 @@ browsers = []
 class RedditBrowser(object):
     def __init__(self, subreddits):
         self.reddit = praw.Reddit(user_agent='Pornserv.PUT_NICK_HERE')
-        self.dump_file = '/irc-porn-pornserv.dump'
+        self.dump_file = 'pornserv.dump'
         self.subs = {sub_name: None for sub_name in subreddits}
         try:
             with open(self.dump_file, 'rb') as f:
@@ -103,7 +103,7 @@ def https_if_possible(url):
         return url
 
 
-@cron('0 */4 * * *')
+@cron('0 */1 * * *')
 def fetch_porn(bot):
     for browser in browsers:
         posts = list(browser.poll())
