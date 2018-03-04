@@ -53,7 +53,7 @@ browsers = []
 class RedditBrowser(object):
     def __init__(self, subreddits):
         self.reddit = praw.Reddit(user_agent='irc-porn')
-        self.dump_file = './irc-porn-lulchat.dump'
+        self.dump_file = './irc-porn-pornserv.dump'
         self.subs = {sub_name: None for sub_name in subreddits}
         try:
             with open(self.dump_file, 'rb') as f:
