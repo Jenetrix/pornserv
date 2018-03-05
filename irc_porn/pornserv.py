@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2017, Cyril Roelandt
 # Reupload by Peter Stanke (MAGIC), https://git.kthx.at/MAGIC/PornServ
-# Edited by Jenetrix & Alsa, https://gitlab.com/Jenetrix/PornServ
+# Forked by Jenetrix & Alsa, https://gitlab.com/Jenetrix/PornServ
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@ browsers = []
 
 class RedditBrowser(object):
     def __init__(self, subreddits):
-        self.reddit = praw.Reddit(user_agent='Pornserv.PUT_NICK_HERE')
+        self.reddit = praw.Reddit(user_agent='Pornserv 0.3')
         self.dump_file = 'pornserv.dump'
         self.subs = {sub_name: None for sub_name in subreddits}
         try:
@@ -103,25 +103,6 @@ def https_if_possible(url):
         return url
 
 
-@cron('0 */1 * * *')
-def fetch_porn(bot):
-    for browser in browsers:
-        posts = list(browser.poll())
-        for (title, url) in posts:
-            url = https_if_possible(url)
-            #url_uid = str(uuid.uuid4())[:6]
-            bot.privmsg(CHANNEL, "\x0304NSFW\x0F %s" % (url))
-
-@irc3.event(r'(@(?P<tags>\S+) )?:(?P<ns>NickServ)!service@rizon.net'
-            r' NOTICE (?P<nick>PUT_NICK_HERE) :This nickname is registered.*')
-def register(bot, ns=None, nick=None, **kw):
-    try:
-        password = 'PUT_PASSWORD_HERE'
-    except KeyError:
-        pass
-    else:
-        bot.privmsg(ns, 'identify %s' % (password))
-
 def parse_args():
     parser = argparse.ArgumentParser(description='')
     parser.add_argument('--server', required=True,
@@ -136,10 +117,36 @@ def parse_args():
                         help='Username used by the IRC bot')
     parser.add_argument('--realname', required=True,
                         help='Realname used by the IRC bot')
+    parser.add_argument('--password',
+                        help='NickServ password (optional)')
     parser.add_argument('--reddit', required=True,
                         help='Comma-separated list of subreddits to parse')
+    parser.add_argument('--interval', required=True, type=int,
+                        help='Post interval in minutes')
     return parser.parse_args()
 
+
+@cron('*/' + str(parse_args().interval) + ' * * * *')
+def fetch_porn(bot):
+    for browser in browsers:
+        posts = list(browser.poll())
+        for (title, url) in posts:
+            url = https_if_possible(url)
+            #url_uid = str(uuid.uuid4())[:6]
+            bot.privmsg(CHANNEL, "\x0304NSFW\x0F %s" % (url))
+			
+args = parse_args()
+@irc3.event(r'(@(?P<tags>\S+) )?:(?P<ns>NickServ)!service@rizon.net'
+            r' NOTICE (?P<nick>'+args.nick+') :This nickname is registered.*')
+def register(bot, ns=None, nick=None, **kw):
+    try:
+        args = parse_args()
+        password = args.password
+    except KeyError:
+        pass
+    else:
+        if(isinstance(password, str) and len(password) > 0):
+            bot.privmsg(ns, 'identify %s' % (password))
 
 def main():
     args = parse_args()
