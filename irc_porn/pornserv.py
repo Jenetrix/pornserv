@@ -54,7 +54,7 @@ browsers = []
 class RedditBrowser(object):
     def __init__(self, subreddits):
         self.reddit = praw.Reddit(user_agent='Pornserv 0.3')
-		dump_path = os.path.dirname(os.path.abspath( __file__ ))
+        dump_path = os.path.dirname(os.path.abspath( __file__ ))
         self.dump_file = 'pornserv.dump'
         self.subs = {sub_name: None for sub_name in subreddits}
         try:
