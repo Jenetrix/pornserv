@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2017, Cyril Roelandt
 # Reupload by Peter Stanke (MAGIC), https://git.kthx.at/MAGIC/PornServ
-# Forked by Jenetrix & Alsa, https://gitlab.com/Jenetrix/PornServ
+# Edited by Jenetrix, Alsa, & Esjay https://gitlab.com/Jenetrix/PornServ
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -36,6 +36,7 @@ import itertools
 import pickle
 import random
 import uuid
+import os
 
 import irc3
 from irc3.plugins.cron import cron
@@ -53,6 +54,7 @@ browsers = []
 class RedditBrowser(object):
     def __init__(self, subreddits):
         self.reddit = praw.Reddit(user_agent='Pornserv 0.3')
+		dump_path = os.path.dirname(os.path.abspath( __file__ ))
         self.dump_file = 'pornserv.dump'
         self.subs = {sub_name: None for sub_name in subreddits}
         try:
