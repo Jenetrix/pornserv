@@ -1,5 +1,5 @@
-PornServ posts porn from Reddit (and maybe other sites one day!) to IRC. No need
-to explain why this is great.
+PornServ posts porn from Reddit (and maybe other sites one day!) to IRC. 
+No need to explain why this is great.
 
 Usage:
 $ irc-porn
@@ -10,6 +10,7 @@ $ irc-porn
 	--realname realname
 	--password nickservpassword (Optional)
 	--channel "#mychannel"
+	--interval 60 (Post time in minutes)
 	--reddit NSFW_GIF,anal
 
 Requires:
