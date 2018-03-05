@@ -5,11 +5,12 @@ Usage:
 $ irc-porn
 	--server irc.rizon.net
 	--port 6697
-	--channel "#mychannel"
-	--reddit NSFW_GIF,anal
-	--nick SomeNickForTheBot
+	--nick nick
 	--username username
 	--realname realname
+	--password nickservpassword (Optional)
+	--channel "#mychannel"
+	--reddit NSFW_GIF,anal
 
 Requires:
     aiocron
