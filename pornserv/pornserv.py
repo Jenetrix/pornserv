@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2017, Cyril Roelandt
 # Reupload by Peter Stanke (MAGIC), https://git.kthx.at/MAGIC/PornServ
-# Edited by Jenetrix, Alsa, & Esjay https://gitlab.com/Jenetrix/PornServ
+# Forked by Jenetrix, Alsa, & Esjay https://gitlab.com/Jenetrix/PornServ
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
