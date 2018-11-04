@@ -9,10 +9,9 @@ $ irc-porn
 	--username username
 	--realname realname
 	--password nickservpassword (Optional)
-	--channel "#mychannel"
+	--channel "#channel,#channel2"
 	--interval 60 (Post time in minutes)
-	--reddit NSFW_GIF,anal
-
+	--reddit Subreddit,Subreddit2 (Case sensitive)
 Requires:
     python 3.6
     pip
