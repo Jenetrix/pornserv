@@ -14,7 +14,7 @@ $ irc-porn
 	--reddit Subreddit,Subreddit2 (Case sensitive)
 Requires:
     python 3.6
-    pip
+    pip3
     aiocron
     irc3
     praw 3.4.0
