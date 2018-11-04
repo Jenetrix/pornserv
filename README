@@ -3,15 +3,16 @@ No need to explain why this is great.
 
 Usage:
 $ irc-porn
-	--server irc.rizon.net
-	--port 6697
-	--nick nick
-	--username username
-	--realname realname
-	--password nickservpassword (Optional)
-	--channel "#channel,#channel2"
-	--interval 60 (Post time in minutes)
-	--reddit Subreddit,Subreddit2 (Case sensitive)
+    --server irc.rizon.net
+    --port 6697
+    --nick nick
+    --username username
+    --realname realname
+    --password nickservpassword (Optional)
+    --channel "#channel,#channel2"
+    --interval 60 (Post time in minutes)
+    --reddit Subreddit,Subreddit2 (Case sensitive)
+	
 Requires:
     python 3.6
     pip3
