@@ -2,7 +2,7 @@ PornServ posts porn from Reddit (and maybe other sites one day!) to IRC.
 No need to explain why this is great.
 
 Usage:
-$ irc-porn
+$ pornserv
     --server irc.rizon.net
     --port 6697
     --nick nick
@@ -14,8 +14,7 @@ $ irc-porn
     --reddit Subreddit,Subreddit2 (Case sensitive)
 	
 Requires:
-    python 3.6
-    pip3
+    python 3
     aiocron
     irc3
     praw 3.4.0
